@@ -8,6 +8,8 @@
 import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var lbId: UILabel!
     @IBOutlet weak var imageUser: UIImageView!
     @IBOutlet weak var lbProfile: UILabel!
     override func awakeFromNib() {
@@ -17,18 +19,15 @@ class ProfileTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     func configCell(data: User) {
+        lbId.text = "\(data.id)"
+        lbName.text = "\(data.firstName) \(data.lastName)"
         lbProfile.text = data.email
         if let url = URL(string: data.avatar) {
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: url) {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.imageUser.image = UIImage(data: data)
-                    }
-                }
+            if let data = try? Data(contentsOf: url) {
+                self.imageUser.image = UIImage(data: data)
             }
         }
     }

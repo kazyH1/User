@@ -10,11 +10,16 @@ import Alamofire
 import NVActivityIndicatorView
 
 struct User: Codable {
-    let id: Int
-    let email: String
-    let first_Name: String
-    let last_Name: String
-    let avatar: String
+    var email, firstName, lastName, avatar : String
+    var id: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case email = "email"
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case avatar = "avatar"
+        case id = "id"
+    }
 }
 
 class ViewController: UIViewController {
@@ -22,34 +27,42 @@ class ViewController: UIViewController {
     @IBOutlet weak var tbvUser: UITableView!
     
     var users: [User] = []
+    var loading: NVActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         registerTableviewCell()
+        loading = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 45, height: 45), type: .ballPulse, color: .gray)
+        self.view.addSubview(loading!)
+        loading!.center = self.view.center
         fetchUsers()
+
+        
     }
     
     func fetchUsers() {
-        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 45, height: 45), type: .ballPulse, color: .gray)
-        self.view.addSubview(activityIndicator)
-        activityIndicator.center = self.view.center
-        activityIndicator.startAnimating()
+        loading!.startAnimating()
         
         let apiUrl = "https://reqres.in/api/users"
         
         AF.request(apiUrl).responseJSON { [weak self] response in
-            activityIndicator.stopAnimating()
+            self?.loading!.stopAnimating()
             
             switch response.result {
             case .success(let value):
                 if let json = value as? [String: Any],
                    let dataArray = json["data"] as? [[String: Any]] {
                     let decoder = JSONDecoder()
-                    if let jsonData = try? JSONSerialization.data(withJSONObject: dataArray, options: []),
-                       let users = try? decoder.decode([User].self, from: jsonData) {
-                        self?.users = users
-                        self?.tbvUser.reloadData()
+                    if let jsonData = try? JSONSerialization.data(withJSONObject: dataArray, options: []) {
+                        do {
+                            var user = try JSONDecoder().decode([User].self, from: jsonData)
+                            self?.users = user
+                            self?.tbvUser.reloadData()
+
+                        } catch {
+                            print("Decoding Error : \(error)")
+                        }
                     }
                 } else {
                     self?.alertController(inputTitleController: "Error", titleButtonOK: "OK", titleButtonCancel: "", inputMessage: "Failed to load users.") { result in
@@ -81,28 +94,40 @@ class ViewController: UIViewController {
 
 
 extension ViewController: UITableViewDelegate,UITableViewDataSource {
-    private func registerTableviewCell() {
+    func registerTableviewCell() {
         tbvUser.delegate = self
         tbvUser.dataSource = self
-        tbvUser.register(UINib(nibName: "NameEmployeeTableViewCell", bundle: nil), forCellReuseIdentifier: "cell1")
-        tbvUser.register(UINib(nibName: "ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "cell2")
+        tbvUser.register(UINib(nibName: "ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tbvUser.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! NameTableViewCell
+            let cell = tbvUser.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTableViewCell
             let data = users[indexPath.row]
             cell.configCell(data: data)
             return cell
-        } else {
-            let cell = tbvUser.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! ProfileTableViewCell
-            let data = users[indexPath.row]
-            cell.configCell(data: data)
-            return cell
-        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        210
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let selectedUser = users[indexPath.row]
+           
+           if (selectedUser.id+1) % 2 == 0 {
+               let sb = UIStoryboard(name: "Main", bundle: nil)
+               let otherVC = sb.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+               otherVC.user = selectedUser
+               self.navigationController?.present(otherVC, animated: true)
+           } else {
+               let sb = UIStoryboard(name: "Main", bundle: nil)
+               let profile = sb.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+               profile.user = selectedUser
+               self.navigationController?.pushViewController(profile, animated: true)
+           }
     }
 }
 

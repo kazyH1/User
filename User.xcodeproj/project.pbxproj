@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00004FFA2A2F6DFC009E82C4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00004FF92A2F6DFC009E82C4 /* ProfileViewController.swift */; };
 		00C957382A1F5A1D00ECFF1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C957372A1F5A1D00ECFF1B /* AppDelegate.swift */; };
 		00C9573A2A1F5A1D00ECFF1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C957392A1F5A1D00ECFF1B /* SceneDelegate.swift */; };
 		00C9573C2A1F5A1D00ECFF1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9573B2A1F5A1D00ECFF1B /* ViewController.swift */; };
@@ -19,8 +20,6 @@
 		00C9575E2A1F5A2300ECFF1B /* UserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9575D2A1F5A2300ECFF1B /* UserUITestsLaunchTests.swift */; };
 		00C9576C2A1F5A5C00ECFF1B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9576A2A1F5A5C00ECFF1B /* ProfileTableViewCell.swift */; };
 		00C9576D2A1F5A5C00ECFF1B /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C9576B2A1F5A5C00ECFF1B /* ProfileTableViewCell.xib */; };
-		00C957702A1F5C1F00ECFF1B /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9576E2A1F5C1F00ECFF1B /* NameTableViewCell.swift */; };
-		00C957712A1F5C1F00ECFF1B /* NameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C9576F2A1F5C1F00ECFF1B /* NameTableViewCell.xib */; };
 		2DBF6E16D4A5821F36CE1918 /* Pods_User.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5C8F3B6B75698A2B2CD31A /* Pods_User.framework */; };
 		8580061E2B7FCEF70CDA9422 /* Pods_UserTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88696648CBC57C344F810CDF /* Pods_UserTests.framework */; };
 		D98C02C21B3E4B8BDE4B4B49 /* Pods_User_UserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F4E0B4569FA10D3823B000 /* Pods_User_UserUITests.framework */; };
@@ -44,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00004FF92A2F6DFC009E82C4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		00C957342A1F5A1D00ECFF1B /* User.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = User.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C957372A1F5A1D00ECFF1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00C957392A1F5A1D00ECFF1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,8 +60,6 @@
 		00C9575D2A1F5A2300ECFF1B /* UserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		00C9576A2A1F5A5C00ECFF1B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		00C9576B2A1F5A5C00ECFF1B /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
-		00C9576E2A1F5C1F00ECFF1B /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
-		00C9576F2A1F5C1F00ECFF1B /* NameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameTableViewCell.xib; sourceTree = "<group>"; };
 		049DC2689A44B3EEA4891CA7 /* Pods-User-UserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-User-UserUITests.release.xcconfig"; path = "Target Support Files/Pods-User-UserUITests/Pods-User-UserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		11BD5F124977838F80E8C486 /* Pods-User.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-User.release.xcconfig"; path = "Target Support Files/Pods-User/Pods-User.release.xcconfig"; sourceTree = "<group>"; };
 		12DAC9B9581712CBD1AA0734 /* Pods-User-UserUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-User-UserUITests.debug.xcconfig"; path = "Target Support Files/Pods-User-UserUITests/Pods-User-UserUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,8 +134,7 @@
 				00C957402A1F5A1D00ECFF1B /* User.xcdatamodeld */,
 				00C9576A2A1F5A5C00ECFF1B /* ProfileTableViewCell.swift */,
 				00C9576B2A1F5A5C00ECFF1B /* ProfileTableViewCell.xib */,
-				00C9576E2A1F5C1F00ECFF1B /* NameTableViewCell.swift */,
-				00C9576F2A1F5C1F00ECFF1B /* NameTableViewCell.xib */,
+				00004FF92A2F6DFC009E82C4 /* ProfileViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -169,7 +166,6 @@
 				6A5E883B464BB8528D036B1D /* Pods-UserTests.debug.xcconfig */,
 				F29BD3647E3EFE6C58818D17 /* Pods-UserTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -296,7 +292,6 @@
 				00C9576D2A1F5A5C00ECFF1B /* ProfileTableViewCell.xib in Resources */,
 				00C957442A1F5A2200ECFF1B /* Assets.xcassets in Resources */,
 				00C9573F2A1F5A1D00ECFF1B /* Main.storyboard in Resources */,
-				00C957712A1F5C1F00ECFF1B /* NameTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,10 +419,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C957702A1F5C1F00ECFF1B /* NameTableViewCell.swift in Sources */,
 				00C957422A1F5A1D00ECFF1B /* User.xcdatamodeld in Sources */,
 				00C9573C2A1F5A1D00ECFF1B /* ViewController.swift in Sources */,
 				00C957382A1F5A1D00ECFF1B /* AppDelegate.swift in Sources */,
+				00004FFA2A2F6DFC009E82C4 /* ProfileViewController.swift in Sources */,
 				00C9576C2A1F5A5C00ECFF1B /* ProfileTableViewCell.swift in Sources */,
 				00C9573A2A1F5A1D00ECFF1B /* SceneDelegate.swift in Sources */,
 			);
